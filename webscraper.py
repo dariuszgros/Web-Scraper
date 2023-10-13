@@ -2,7 +2,10 @@ import requests
 from bs4 import BeautifulSoup
 
 # Define the URL of the website we want to scrape
-url = "https://quotes.toscrape.com"
+url = input("Enter the URL of the website you want to scrape: ")
+
+# Let the user define the file name for a scraped data
+file_name = input("Enter the name of the file to save the data: ")
 
 # Sending an HTTP GET request to the website
 response = requests.get(url)
@@ -15,7 +18,7 @@ if response.status_code == 200:
     quotes = soup.find_all("span", class_="text")
 
     # Saving the quotes
-    with open("quotes.txt", "w") as file:
+    with open(file_name, "w") as file:
         for quote in quotes:
             file.write(quote.get_text() + "\n")
 
